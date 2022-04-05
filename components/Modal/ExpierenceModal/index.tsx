@@ -30,7 +30,7 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
                 </Menu.Button>
                 <Menu.Items className="absolute top-18 block w-full shadow-md bg-white z-10">
                   {[1, 3, 5, 7, 9, 11].map((year, index) => (
-                    <div className="grid grid-cols-2">
+                    <div className="grid grid-cols-2" key={index}>
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -79,11 +79,10 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
                 </Menu.Button>
                 <Menu.Items className="absolute top-[-200%] block w-full shadow-md bg-white z-10">
                   {[1, 3, 5, 7, 9, 11].map((year, index) => (
-                    <div className="grid grid-cols-2">
+                    <div className="grid grid-cols-2" key={index}>
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            key={index}
                             className={`${
                               active && "bg-primary text-white"
                             } block px-4 py-2 font-montserrat text-[10px] rounded-md text-center`}
