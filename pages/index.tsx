@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <div className="md:grid grid-cols-2">
         <Sidebar />
-        <div className="main w-full h-auto bg-primary p-12 text-white">
+        <div className="main w-full h-auto bg-primary md:p-12 p-4 text-white">
           <Resume />
         </div>
       </div>
