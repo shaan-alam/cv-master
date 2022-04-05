@@ -11,7 +11,7 @@ const Modal = ({ children, title, isOpen, setIsOpen }: Props) => {
   return isOpen
     ? ReactDOM.createPortal(
         <div className="modal h-screen w-screen absolute inset-0 bg-[#0066ff50] flex items-center justify-center">
-          <div className="modal-content bg-white w-[65%] rounded-md shadow-xl">
+          <div className="modal-content bg-white w-[90%] md:w-[65%] rounded-md shadow-xl">
             <div className="modal-header flex items-center p-4 border-b-2">
               <h2 className="font-semibold">{title}</h2>
               <a
