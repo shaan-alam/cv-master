@@ -43,7 +43,7 @@ const Resume = () => {
             </h1>
             <div className="expierences">
               {expierences.map((expierence) => (
-                <div className="expierence my-3 flex">
+                <div className="expierence my-3 flex" id={expierence.id}>
                   <div className="left">
                     <h1 className="text-black font-montserrat text-sm">
                       {expierence.position}
@@ -95,7 +95,7 @@ const Resume = () => {
                   </h1>
                   <ul className="my-4 list-disc text-sm text-gray-600 mx-4">
                     {skills.map((skill) => (
-                      <li>{skill.skill}</li>
+                      <li key={skill.id}>{skill.skill}</li>
                     ))}
                   </ul>
                 </div>

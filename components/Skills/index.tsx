@@ -13,7 +13,7 @@ const Skills = () => {
     <div className="bg-white">
       <h1 className="font-bold text-primary my-4">Your Skills</h1>
       {skills.map((skill) => (
-        <SkillsCard skill={skill} />
+        <SkillsCard skill={skill} key={skill.id} />
       ))}
       <a
         href="#!"
