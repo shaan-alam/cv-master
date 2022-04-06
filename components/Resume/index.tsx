@@ -43,7 +43,7 @@ const Resume = () => {
             </h1>
             <div className="expierences">
               {expierences.map((expierence) => (
-                <div className="expierence my-3 flex" id={expierence.id}>
+                <div className="expierence my-3 flex" key={expierence.id}>
                   <div className="left">
                     <h1 className="text-black font-montserrat text-sm">
                       {expierence.position}

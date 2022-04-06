@@ -10,7 +10,7 @@ const Education = () => {
     <div className="bg-white">
       <h1 className="font-bold text-primary my-4">Educational Details</h1>
       {education.map((edu) => (
-        <EducationCard education={edu} />
+        <EducationCard education={edu} key={edu.id} />
       ))}
       <a
         href="#!"

@@ -11,7 +11,7 @@ const Expierences = () => {
     <div className="bg-white">
       <h1 className="font-bold text-primary my-4">Previous Expierences</h1>
       {expierences.map((exp) => (
-        <ExpierenceCard expierence={exp} />
+        <ExpierenceCard expierence={exp} key={exp.id} />
       ))}
       <a
         href="#!"
