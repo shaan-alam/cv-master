@@ -1,7 +1,10 @@
+import React, { useContext, useState } from "react";
 import FormInput from "../../FormInput";
 import Modal from "../index";
 import { Menu } from "@headlessui/react";
 import Button from "../../Button/Button";
+import { Context, Expierence } from "../../../Context/Context";
+import { v4 } from "uuid";
 
 interface Props {
   isOpen: boolean;
@@ -9,14 +12,45 @@ interface Props {
 }
 
 const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
+  const [values, setValues] = useState<Expierence>({
+    id: "",
+    companyName: "",
+    endMonth: 0,
+    endYear: "",
+    position: "",
+    startMonth: 0,
+    startYear: "",
+    description: "",
+  });
+  const { setExpierences } = useContext(Context);
+
+  const saveForm = () => {
+    setExpierences((expierences) => [...expierences, values]);
+    setIsOpen(false);
+  };
+
+  const onFormInputChange = (e: any) => {
+    setValues((exp) => ({ ...exp, id: v4(), [e.target.id]: e.target.value }));
+  };
+
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Education Details">
       <div>
         <div className="form-control mt-5">
-          <FormInput title="Position" id="position" type="text" />
+          <FormInput
+            title="Position"
+            id="position"
+            type="text"
+            onChange={onFormInputChange}
+          />
         </div>
         <div className="form-control mt-5">
-          <FormInput title="Company Name" id="companyName" type="text" />
+          <FormInput
+            title="Company Name"
+            id="companyName"
+            type="text"
+            onChange={onFormInputChange}
+          />
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="form-control mt-5">
@@ -38,7 +72,13 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
                             className={`${
                               active && "bg-primary text-white"
                             } block px-4 py-2 font-montserrat text-[10px] rounded-md text-center`}
-                            href="/account-settings"
+                            href="#!"
+                            onClick={() =>
+                              setValues((values) => ({
+                                ...values,
+                                startMonth: year,
+                              }))
+                            }
                           >
                             {year}
                           </a>
@@ -51,7 +91,13 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
                             className={`${
                               active && "bg-primary text-white"
                             } block px-4 py-2 font-montserrat text-[10px] rounded-md text-center`}
-                            href="/account-settings"
+                            href="#!"
+                            onClick={() =>
+                              setValues((values) => ({
+                                ...values,
+                                startMonth: year + 1,
+                              }))
+                            }
                           >
                             {year + 1}
                           </a>
@@ -64,7 +110,12 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
             </div>
           </div>
           <div className="form-control mt-5">
-            <FormInput id="startYear" title="Start Year" type="text" />
+            <FormInput
+              id="startYear"
+              title="Start Year"
+              type="text"
+              onChange={onFormInputChange}
+            />
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -86,7 +137,13 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
                             className={`${
                               active && "bg-primary text-white"
                             } block px-4 py-2 font-montserrat text-[10px] rounded-md text-center`}
-                            href="/account-settings"
+                            href="#!"
+                            onClick={() =>
+                              setValues((values) => ({
+                                ...values,
+                                endMonth: year,
+                              }))
+                            }
                           >
                             {year}
                           </a>
@@ -99,7 +156,13 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
                             className={`${
                               active && "bg-primary text-white"
                             } block px-4 py-2 font-montserrat text-[10px] rounded-md text-center`}
-                            href="/account-settings"
+                            href="#!"
+                            onClick={() =>
+                              setValues((values) => ({
+                                ...values,
+                                endMonth: year + 1,
+                              }))
+                            }
                           >
                             {year + 1}
                           </a>
@@ -112,7 +175,30 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
             </div>
           </div>
           <div className="form-control mt-5">
-            <FormInput id="endYear" title="End Year" type="text" />
+            <FormInput
+              id="endYear"
+              title="End Year"
+              type="text"
+              onChange={onFormInputChange}
+            />
+          </div>
+          <div className="form-control">
+            <label
+              htmlFor="fullName"
+              className="text-gray-600 font-montserrat text-sm mt-4 block"
+            >
+              Description
+            </label>
+            <textarea
+              id="description"
+              className="mt-1 px-4 py-2 bg-gray-200 rounded-md transition-all focus:ring-1 focus:ring-primary w-full font-montserrat"
+              onChange={(e) =>
+                setValues((values) => ({
+                  ...values,
+                  description: e.target.value,
+                }))
+              }
+            ></textarea>
           </div>
         </div>
       </div>
@@ -124,7 +210,7 @@ const ExpierenceModal = ({ isOpen, setIsOpen }: Props) => {
         >
           Cancel
         </Button>
-        <Button onClick={() => setIsOpen(false)} variant="primary">
+        <Button onClick={saveForm} variant="primary">
           Save
         </Button>
       </div>

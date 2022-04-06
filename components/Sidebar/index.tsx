@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Tab } from "@headlessui/react";
 import { ContactInformation, Education, Expierences } from "..";
 import Button from "../Button/Button";
@@ -8,23 +8,56 @@ const Sidebar = () => {
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
-    <div className="w-full shadow-lg rounded-md mt-8 h-auto block">
-      <Tab.Group selectedIndex={currentTab} onChange={setCurrentTab}>
-        <Tab.List className="w-full text-white py-4 border-b overflow-auto">
-          <Tab className="w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat">
-            Contact Information
+    <div className="w-full shadow-lg rounded-md mt-8 h-screen block">
+      <Tab.Group
+        selectedIndex={currentTab}
+        onChange={setCurrentTab}
+        defaultIndex={0}
+      >
+        <Tab.List className="w-full text-white py-4 border-b overflow-auto flex">
+          <Tab as={Fragment}>
+            {({ selected }) => (
+              <div
+                className={`${
+                  selected && "bg-gray-100 ring text-primary"
+                } flex items-center justify-center cursor-pointer w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat font-semibold`}
+              >
+                General
+              </div>
+            )}
           </Tab>
-          <Tab className="w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat">
-            Education
+          <Tab as={Fragment}>
+            {({ selected }) => (
+              <div
+                className={`${
+                  selected && "bg-gray-100 ring text-primary"
+                } flex items-center cursor-pointer w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat font-semibold`}
+              >
+                Expierences
+              </div>
+            )}
           </Tab>
-          <Tab className="w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat">
-            Expierences
+          <Tab as={Fragment}>
+            {({ selected }) => (
+              <div
+                className={`${
+                  selected && "bg-gray-100 ring text-primary"
+                } flex items-center justify-center cursor-pointer w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat font-semibold`}
+              >
+                Education
+              </div>
+            )}
           </Tab>
-          <Tab className="w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat">
-            Skills
-          </Tab>
-          <Tab className="w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat">
-            Languages
+          <Tab as={Fragment}>
+            {({ selected }) => (
+              <div
+                className={`${
+                  selected && "bg-gray-100 ring text-primary"
+                } flex items-center justify-center cursor-pointer w-[40%] md:w-[20%] transition-all text-gray-500 text-sm hover:text-primary rounded-md px-6 py-3 font-montserrat font-semibold`}
+              >
+                Skills
+              </div>
+            )}
           </Tab>
         </Tab.List>
         <Tab.Panels>
@@ -40,7 +73,6 @@ const Sidebar = () => {
           <Tab.Panel className="py-4 px-12">
             <Skills />
           </Tab.Panel>
-          <Tab.Panel className="py-4 px-12">Content 5</Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
       <div className="py-4 px-12">
@@ -54,6 +86,9 @@ const Sidebar = () => {
             Next
           </Button>
         )}
+        <div className="my-12 container mx-auto text-sm text-gray-500 font-montserrat font-regular">
+          Made with ♥ by Shaan Alam
+        </div>
       </div>
     </div>
   );

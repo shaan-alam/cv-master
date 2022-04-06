@@ -5,3 +5,4 @@ export { default as Education } from "./Education";
 export { default as Expierences } from "./Expierences";
 export { default as EducationModal } from "./Modal/EducationModal";
 export { default as ExpierenceModal } from "./Modal/ExpierenceModal";
+export { default as EducationCard } from "./EducationCard";
